@@ -1,0 +1,125 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.7" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "姓名"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 40
+				"height": 25
+				"x": 155
+				"y": 35
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "id_text"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 165
+				"height": 30
+				"x": 200
+				"y": 30
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "班级"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 40
+				"height": 25
+				"x": 155
+				"y": 80
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "name_text"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 165
+				"height": 30
+				"x": 200
+				"y": 75
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "年龄"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 40
+				"height": 25
+				"x": 155
+				"y": 120
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "author_text"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 165
+				"height": 30
+				"x": 200
+				"y": 115
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "性别"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 40
+				"height": 25
+				"x": 155
+				"y": 165
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "pub_text"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 165
+				"height": 30
+				"x": 200
+				"y": 160
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "专业"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 40
+				"height": 25
+				"x": 155
+				"y": 215
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "num_text"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 165
+				"height": 30
+				"x": 200
+				"y": 210
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "类型"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 40
+				"height": 25
+				"x": 155
+				"y": 260
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "type_text"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 165
+				"height": 30
+				"x": 200
+				"y": 255
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "用户注册"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "button1MouseClicked", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 75
+				"height": 30
+				"x": 240
+				"y": 330
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 115, 45 )
+			"size": new java.awt.Dimension( 535, 450 )
+		} )
+	}
+}

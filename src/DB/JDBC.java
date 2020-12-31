@@ -15,7 +15,7 @@ public class JDBC {
             System.out.println("驱动加载成功");//jdbc:mysql://localhost:3306/library?characterEncoding=utf8&useSSL=false
             //连接数据库jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&serverTimezone=UTC
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/yundonghui?characterEncoding=utf-8&serverTimezone=UTC", "root", "root");
+                    "jdbc:mysql://localhost:3306/sportsmeeting?characterEncoding=utf-8&serverTimezone=UTC", "root", "123456yk");
             System.out.println("数据库连接成功");
 
             //2.创建statement类对象，用来执行SQL语句！！
