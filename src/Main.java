@@ -14,13 +14,7 @@ public class Main {
         JFrame loginFrame = new LoginFrame();
         loginFrame.setMinimumSize(new Dimension(400, 300));
         loginFrame.setVisible(true);
-//        String time1 = "2020.01.02 08:20";
-//        String time2 = "2020.01.02 08:30";
-//
-//        String time3 = "2020.01.02 08:25";
-//        String time4 = "2020.01.02 08:40";
-//
-//        System.out.println(isConflict(time1,time2,time3,time4));
+
     }
 
 
@@ -32,10 +26,10 @@ public class Main {
         if (bigger(newEnd_time,start_time)&&bigger(end_time,newEnd_time)){
             return true;
         }
-        if (bigger(newStart_time,start_time)&&bigger(newEnd_time,end_time)){
+        if (bigger(newStart_time,start_time)&&bigger(end_time,newEnd_time)){
             return true;
         }
-        if (bigger(start_time,newStart_time)&&bigger(end_time,newEnd_time)){
+        if (bigger(start_time,newStart_time)&&bigger(newEnd_time,end_time)){
             return true;
         }
         return false;

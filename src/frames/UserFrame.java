@@ -20,6 +20,8 @@ import java.util.Vector;
 public class UserFrame extends JFrame {
     public UserFrame() throws SQLException {
         initComponents();
+
+        welcom_lable.setText("欢迎用户："+DAO.StuId);
         // 显示所有项目信息
         Vector<Vector<Object>> studate = new Vector<Vector<Object>>();
         Vector<Object> row = null;
@@ -174,7 +176,7 @@ public class UserFrame extends JFrame {
 
         for (int i=0;i<str.length();i++){
             if(str.charAt(i)<'0'||str.charAt(i)>'9'){
-                JOptionPane.showMessageDialog(null, "账号格式不正确，应只包含数字！");
+                JOptionPane.showMessageDialog(null, "项目编号格式不正确，应只包含数字！");
                 return;
             }
         }
@@ -231,7 +233,7 @@ public class UserFrame extends JFrame {
             sportName = resultSet3.getString("Sport_name");
 
             if (DAO.isConflict(start_time,end_time,newStart_Time,newEnd_time)){
-                JOptionPane.showMessageDialog(null, "此项目与之前报名的编号为 "+sportId+" 的‘"+sportName+"’相冲突  \n请重新安排报名！");
+                JOptionPane.showMessageDialog(null, "此项目与之前报名的编号为 "+sportId+" 的‘"+sportName+"’时间相冲突  \n请重新安排报名！");
                 return;
             }
         }
@@ -373,6 +375,7 @@ public class UserFrame extends JFrame {
         button3 = new JButton();
         label5 = new JLabel();
         button5 = new JButton();
+        welcom_lable = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -383,7 +386,7 @@ public class UserFrame extends JFrame {
             scrollPane1.setViewportView(table1);
         }
         contentPane.add(scrollPane1);
-        scrollPane1.setBounds(10, 10, 565, 345);
+        scrollPane1.setBounds(10, 50, 565, 345);
 
         //---- button4 ----
         button4.setText("\u786e\u5b9a\u67e5\u8be2");
@@ -398,14 +401,14 @@ public class UserFrame extends JFrame {
             }
         });
         contentPane.add(button4);
-        button4.setBounds(625, 150, 95, 30);
+        button4.setBounds(625, 190, 95, 30);
 
         //---- label1 ----
         label1.setText("\u8bf7\u8f93\u5165\u9879\u76ee\u540d\u79f0\u5173\u952e\u5b57\u8fdb\u884c\u67e5\u8be2\uff1a");
         contentPane.add(label1);
-        label1.setBounds(595, 30, 195, 45);
+        label1.setBounds(595, 70, 195, 45);
         contentPane.add(textField1);
-        textField1.setBounds(595, 80, 175, 40);
+        textField1.setBounds(595, 120, 175, 40);
 
         //---- button1 ----
         button1.setText("\u663e\u793a\u6240\u6709\u9879\u76ee\u4fe1\u606f");
@@ -420,7 +423,7 @@ public class UserFrame extends JFrame {
             }
         });
         contentPane.add(button1);
-        button1.setBounds(65, 395, 135, 40);
+        button1.setBounds(65, 435, 135, 40);
 
         //---- button2 ----
         button2.setText("\u663e\u793a\u5df2\u62a5\u540d\u9879\u76ee\u4fe1\u606f");
@@ -435,24 +438,24 @@ public class UserFrame extends JFrame {
             }
         });
         contentPane.add(button2);
-        button2.setBounds(300, 395, 150, 40);
+        button2.setBounds(300, 435, 150, 40);
 
         //---- label2 ----
         label2.setText("-----------------------------------------");
         contentPane.add(label2);
-        label2.setBounds(585, 260, 225, label2.getPreferredSize().height);
+        label2.setBounds(585, 300, 225, label2.getPreferredSize().height);
 
         //---- label3 ----
         label3.setText("\u9879\u76ee\u62a5\u540d\u7ba1\u7406\u533a\u57df");
         contentPane.add(label3);
-        label3.setBounds(645, 235, 130, 32);
+        label3.setBounds(645, 275, 130, 32);
 
         //---- label4 ----
         label4.setText("\u9879\u76ee\u7f16\u53f7");
         contentPane.add(label4);
-        label4.setBounds(585, 290, 65, 35);
+        label4.setBounds(585, 330, 65, 35);
         contentPane.add(textField2);
-        textField2.setBounds(650, 290, 120, 40);
+        textField2.setBounds(650, 330, 120, 40);
 
         //---- button3 ----
         button3.setText("\u786e\u8ba4\u62a5\u540d");
@@ -467,12 +470,12 @@ public class UserFrame extends JFrame {
             }
         });
         contentPane.add(button3);
-        button3.setBounds(600, 355, 90, 35);
+        button3.setBounds(600, 395, 90, 35);
 
         //---- label5 ----
         label5.setText("-----------------------------------------");
         contentPane.add(label5);
-        label5.setBounds(585, 220, 225, 17);
+        label5.setBounds(585, 260, 225, 17);
 
         //---- button5 ----
         button5.setText("\u53d6\u6d88\u62a5\u540d");
@@ -487,7 +490,12 @@ public class UserFrame extends JFrame {
             }
         });
         contentPane.add(button5);
-        button5.setBounds(700, 355, 90, 35);
+        button5.setBounds(700, 395, 90, 35);
+
+        //---- welcom_lable ----
+        welcom_lable.setBackground(Color.red);
+        contentPane.add(welcom_lable);
+        welcom_lable.setBounds(25, 5, 235, 35);
 
         {
             // compute preferred size
@@ -524,5 +532,6 @@ public class UserFrame extends JFrame {
     private JButton button3;
     private JLabel label5;
     private JButton button5;
+    private JLabel welcom_lable;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

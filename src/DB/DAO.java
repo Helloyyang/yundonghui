@@ -7,6 +7,8 @@ import java.sql.SQLException;
 public class DAO {
 
     public static String StuId;
+    public static int TeamId;
+
     JDBC jdbc = new JDBC();
     static ResultSet resultSet;
 
@@ -51,7 +53,47 @@ public class DAO {
         return resultSet;
     }
 
-    //根据关键字对项目进行查询
+    //得到所有团队项目信息
+    public static ResultSet getAllTeamItemInfo()throws SQLException {
+        String sql = "select * from sport_list where Min_sum > 1;";
+        System.out.println(sql);
+        resultSet = JDBC.statement.executeQuery(sql);
+        return resultSet;
+    }
+
+    //得到团队已经报名的信息
+    public static ResultSet getTeamSignUpInfo(int teamId) throws SQLException {
+        String sql = "select sport_list.*,Cid from tsign_up_list,sport_list  where sport_list.Sportid=tsign_up_list.Sportid and Tid = '" + teamId+"';";
+        System.out.println(sql);
+        resultSet = JDBC.statement.executeQuery(sql);
+        return resultSet;
+    }
+
+    //根据关键字对团队项目进行查询
+    public static ResultSet getKeyTeamItemInfo(String keyWords) throws SQLException {
+        String sql = "select * from sport_list where Min_sum > 1 and Sport_name like '%"+keyWords+"%';";
+        System.out.println(sql);
+        resultSet = JDBC.statement.executeQuery(sql);
+        return resultSet;
+    }
+
+    //添加学生-团队信息
+    public static void addTeamMakerInfo(String stuId,int teamId) throws SQLException {
+        String sql = "insert into student_team_list(Sid,Tid,iden) " +
+                "values ('"+ stuId +"' ," + teamId +","+1+");";
+        System.out.println(sql);
+        JDBC.statement.execute(sql);
+    }
+
+    //获取团队成员信息
+    public static ResultSet getTeamMatesInfo(int teamId) throws SQLException {
+        String sql = "select student.*,iden from student_team_list,student where Tid ="+teamId+" and student.Sid = student_team_list.Sid;";
+        System.out.println(sql);
+        resultSet = JDBC.statement.executeQuery(sql);
+        return resultSet;
+    }
+
+    //根据关键字对个人项目进行查询
     public static ResultSet getKeyItemInfo(String keyWords) throws SQLException {
         String sql = "select * from sport_list where Min_sum = 1 and Sport_name like '%"+keyWords+"%';";
         System.out.println(sql);
@@ -67,7 +109,13 @@ public class DAO {
         return resultSet;
     }
 
-
+    //查询当前报名队伍数
+    public static ResultSet getSignUpTeamNum(int sportId) throws SQLException {
+        String sql = "select * from tsign_up_list  where Sportid = " + sportId+";";
+        System.out.println(sql);
+        resultSet = JDBC.statement.executeQuery(sql);
+        return resultSet;
+    }
 
     //查询某个学生已经报名的全部项目信息
     public static ResultSet getStuSignUpInfo(String stuId) throws SQLException {
@@ -76,7 +124,6 @@ public class DAO {
         resultSet = JDBC.statement.executeQuery(sql);
         return resultSet;
     }
-
 
     //添加学生报名信息
     public static boolean addStuSignUpInfo(String stuId,int sportId,int Cid) throws SQLException {
@@ -101,9 +148,31 @@ public class DAO {
         return JDBC.statement.executeQuery(sql).next();
     }
 
+    //查询团队对是否已经报名
+    public static boolean isTeamSignUp(int teamId,int sportId) throws SQLException {
+        String sql = " select * from tsign_up_list  where Sportid ="+sportId+" and Tid ="+ teamId+";";
+        System.out.println(sql);
+        return JDBC.statement.executeQuery(sql).next();
+    }
+
+    //添加团队报名信息
+    public static boolean addTeamSignUpInfo(int teamId,int sportId,int Cid) throws SQLException {
+        String sql = "insert into tsign_up_list(Tid,Sportid,Cid) " +
+                "values ('"+ teamId +"' ," + sportId +","+Cid+");";
+        System.out.println(sql);
+        return JDBC.statement.execute(sql);
+    }
+
     //学生取消报名
     public static boolean cancelSignUp(String stuId,int sportId) throws SQLException {
         String sql = " delete from ssign_up_list  where Sportid ="+sportId+" and Sid ="+ stuId+";";
+        System.out.println(sql);
+        return JDBC.statement.execute(sql);
+    }
+
+    //团队取消报名
+    public static boolean cancelTeamSignUp(int teamId,int sportId) throws SQLException {
+        String sql = " delete from tsign_up_list  where Sportid ="+sportId+" and Tid ="+ teamId+";";
         System.out.println(sql);
         return JDBC.statement.execute(sql);
     }
@@ -140,7 +209,7 @@ public class DAO {
 
     //查询学生当队长的数目
     public static ResultSet searchTeamNum(String id) throws SQLException {
-        String sql = "select * from student_team_list  where  Sid= "+ id+" and identity ="+ 1+";";
+        String sql = "select * from student_team_list  where  Sid= "+ id+" and iden ="+ 1+";";
         System.out.println(sql);
         resultSet = JDBC.statement.executeQuery(sql);
         return resultSet;
@@ -203,10 +272,10 @@ public class DAO {
         if (bigger(newEnd_time,start_time)&&bigger(end_time,newEnd_time)){
             return true;
         }
-        if (bigger(newStart_time,start_time)&&bigger(newEnd_time,end_time)){
+        if (bigger(newStart_time,start_time)&&bigger(end_time,newEnd_time)){
             return true;
         }
-        if (bigger(start_time,newStart_time)&&bigger(end_time,newEnd_time)){
+        if (bigger(start_time,newStart_time)&&bigger(newEnd_time,end_time)){
             return true;
         }
         return false;
@@ -219,6 +288,29 @@ public class DAO {
         resultSet = JDBC.statement.executeQuery(sql);
         return resultSet;
     }
-    //
+
+    //添加队员信息
+    public static void addTeamMatesInfo(String stuId,int teamId) throws SQLException {
+        String sql = "insert into student_team_list(Sid,Tid,iden ) " +
+                "values('" + stuId + "'," + teamId+ ",0);";
+        System.out.println(sql);
+        JDBC.statement.execute(sql);
+    }
+
+    //删除队员信息
+    public static void delTeamMatesInfo(String stuId,int teamId) throws SQLException {
+        String sql = "delete from student_team_list " +
+                "where Sid = '"+stuId+"' and Tid = "+teamId;
+        System.out.println(sql);
+        JDBC.statement.execute(sql);
+    }
+
+    //判断学生是否已经在队伍中
+    public static boolean isInTeam(String stuId,int Tid) throws SQLException {
+        String sql = " select * from student_team_list  where Sid ='"+stuId+"' and Tid ="+Tid;
+        System.out.println(sql);
+        return JDBC.statement.executeQuery(sql).next();
+    }
+
 
 }

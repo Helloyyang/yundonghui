@@ -44,11 +44,11 @@ public class LoginFrame extends JFrame {
         }
 
         if (DAO.logStu(name,password)){
+            DAO.StuId = name;
             JFrame stuFrame = new UserFrame();
-            stuFrame.setMinimumSize(new Dimension(815, 500));
+            stuFrame.setMinimumSize(new Dimension(815, 540));
             this.dispose();
             stuFrame.setVisible(true);
-            DAO.StuId = name;
             JOptionPane.showMessageDialog(null, "登录成功！");
         }else {
             JOptionPane.showMessageDialog(null, "用户名或密码错误！");
@@ -64,9 +64,22 @@ public class LoginFrame extends JFrame {
             return;
         }
 
+        if (name.length()!=6){
+            JOptionPane.showMessageDialog(null, "账号应为注册时生成的六位团队号！");
+            return;
+        }
+
+        for (int i=0;i<name.length();i++){
+            if(name.charAt(i)<'0'||name.charAt(i)>'9'){
+                JOptionPane.showMessageDialog(null, "账号格式不正确，应只包含数字！");
+                return;
+            }
+        }
+
         if (DAO.logTeam(name,password)){
+            DAO.TeamId = Integer.valueOf(name);
             JFrame teamFrame = new TeamFrame();
-            teamFrame.setMinimumSize(new Dimension(670, 465));
+            teamFrame.setMinimumSize(new Dimension(920, 540));
             this.dispose();
             teamFrame.setVisible(true);
             JOptionPane.showMessageDialog(null, "登录成功！");

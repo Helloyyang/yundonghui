@@ -89,7 +89,12 @@ public class RegisterTeamFrame extends JFrame {
         while (rs.next()){
             num++;
         }
+        //添加队伍信息
         DAO.teamRegister(num,name,password);
+        //添加学生-队伍信息
+        DAO.addTeamMakerInfo(id,num);
+        System.out.println("成功添加学生-队伍信息！！！！");
+
         JOptionPane.showMessageDialog(null, "创建队伍成功\n队伍编号为："+num+"密码为："+password+"\n可以登录添加队伍成员了！");
         this.dispose();
         return;
