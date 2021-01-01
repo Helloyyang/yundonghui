@@ -4,6 +4,8 @@
 
 package frames;
 
+import DB.DAO;
+
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
@@ -17,74 +19,33 @@ public class RegisterFrame extends JFrame {
     }
 
     private void button1MouseClicked(MouseEvent e) {
-        // TODO add your code here
+        //个人注册
+        JFrame registerSelfFrame = new RegisterSelfFrame();
+        registerSelfFrame.setMinimumSize(new Dimension(490, 495));
+        this.dispose();
+        registerSelfFrame.setVisible(true);
+    }
+
+    private void button2MouseClicked(MouseEvent e) {
+        // 团队注册
+        JFrame registerTeamFrame = new RegisterTeamFrame();
+        registerTeamFrame.setMinimumSize(new Dimension(465, 355));
+        this.dispose();
+        registerTeamFrame.setVisible(true);
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - yyy
-        label1 = new JLabel();
-        id_text = new JTextField();
-        label2 = new JLabel();
-        name_text = new JTextField();
-        label3 = new JLabel();
-        author_text = new JTextField();
-        label4 = new JLabel();
-        pub_text = new JTextField();
-        label5 = new JLabel();
-        num_text = new JTextField();
-        label6 = new JLabel();
-        type_text = new JTextField();
         button1 = new JButton();
+        button2 = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(null);
 
-        //---- label1 ----
-        label1.setText("\u59d3\u540d");
-        contentPane.add(label1);
-        label1.setBounds(155, 35, 40, 25);
-        contentPane.add(id_text);
-        id_text.setBounds(200, 30, 165, 30);
-
-        //---- label2 ----
-        label2.setText("\u73ed\u7ea7");
-        contentPane.add(label2);
-        label2.setBounds(155, 80, 40, 25);
-        contentPane.add(name_text);
-        name_text.setBounds(200, 75, 165, 30);
-
-        //---- label3 ----
-        label3.setText("\u5e74\u9f84");
-        contentPane.add(label3);
-        label3.setBounds(155, 120, 40, 25);
-        contentPane.add(author_text);
-        author_text.setBounds(200, 115, 165, 30);
-
-        //---- label4 ----
-        label4.setText("\u6027\u522b");
-        contentPane.add(label4);
-        label4.setBounds(155, 165, 40, 25);
-        contentPane.add(pub_text);
-        pub_text.setBounds(200, 160, 165, 30);
-
-        //---- label5 ----
-        label5.setText("\u4e13\u4e1a");
-        contentPane.add(label5);
-        label5.setBounds(155, 215, 40, 25);
-        contentPane.add(num_text);
-        num_text.setBounds(200, 210, 165, 30);
-
-        //---- label6 ----
-        label6.setText("\u7c7b\u578b");
-        contentPane.add(label6);
-        label6.setBounds(155, 260, 40, 25);
-        contentPane.add(type_text);
-        type_text.setBounds(200, 255, 165, 30);
-
         //---- button1 ----
-        button1.setText("\u7528\u6237\u6ce8\u518c");
+        button1.setText("\u7528\u6237\u4e2a\u4eba\u6ce8\u518c");
         button1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -92,7 +53,18 @@ public class RegisterFrame extends JFrame {
             }
         });
         contentPane.add(button1);
-        button1.setBounds(240, 330, 75, 30);
+        button1.setBounds(40, 90, 120, 70);
+
+        //---- button2 ----
+        button2.setText("\u56e2\u961f\u6ce8\u518c");
+        button2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                button2MouseClicked(e);
+            }
+        });
+        contentPane.add(button2);
+        button2.setBounds(190, 90, 135, 70);
 
         {
             // compute preferred size
@@ -115,18 +87,7 @@ public class RegisterFrame extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - yyy
-    private JLabel label1;
-    private JTextField id_text;
-    private JLabel label2;
-    private JTextField name_text;
-    private JLabel label3;
-    private JTextField author_text;
-    private JLabel label4;
-    private JTextField pub_text;
-    private JLabel label5;
-    private JTextField num_text;
-    private JLabel label6;
-    private JTextField type_text;
     private JButton button1;
+    private JButton button2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

@@ -5,6 +5,7 @@
 package frames;
 
 import DB.DAO;
+import com.sun.tools.javac.Main;
 
 import java.awt.event.*;
 import javax.swing.*;
@@ -30,11 +31,24 @@ public class LoginFrame extends JFrame {
             return;
         }
 
+        if (name.length()!=12){
+            JOptionPane.showMessageDialog(null, "账号位数不正确，请重新确认！");
+            return;
+        }
+
+        for (int i=0;i<name.length();i++){
+            if(name.charAt(i)<'0'||name.charAt(i)>'9'){
+                JOptionPane.showMessageDialog(null, "账号格式不正确，应只包含数字！");
+                return;
+            }
+        }
+
         if (DAO.logStu(name,password)){
             JFrame stuFrame = new UserFrame();
-            stuFrame.setMinimumSize(new Dimension(670, 465));
+            stuFrame.setMinimumSize(new Dimension(815, 500));
             this.dispose();
             stuFrame.setVisible(true);
+            DAO.StuId = name;
             JOptionPane.showMessageDialog(null, "登录成功！");
         }else {
             JOptionPane.showMessageDialog(null, "用户名或密码错误！");
@@ -85,7 +99,7 @@ public class LoginFrame extends JFrame {
     private void button3MouseClicked(MouseEvent e) {
         // 用户注册
         JFrame registerFrame = new RegisterFrame();
-        registerFrame.setMinimumSize(new Dimension(670, 465));
+        registerFrame.setMinimumSize(new Dimension(355, 275));
         registerFrame.setVisible(true);
     }
 

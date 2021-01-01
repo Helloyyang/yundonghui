@@ -6,7 +6,7 @@ new FormModel {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 			name: "this"
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 195, 65 )
+			"location": new java.awt.Point( 155, 65 )
 			"size": new java.awt.Dimension( 400, 300 )
 		} )
 	}
